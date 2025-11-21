@@ -127,28 +127,6 @@ jira-insight-deck/
 
 ---
 
-## 🧠 Example Summary Output
-
-### Summary
-
-* 12 tasks completed
-* 8 in progress
-* 1 blocker
-* Focus area: **Payment Refactor**
-
-### Progress
-
-* Feature A → 80%
-* Feature B → 25%
-* Bugfix load → 40%
-
-### Risks
-
-* External API rate limiting
-* Delay risk on task ABC-123
-
----
-
 ## 🧩 Roadmap
 
 * [ ] Multiple PPT templates
