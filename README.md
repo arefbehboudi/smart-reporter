@@ -1,4 +1,4 @@
-# 📊 Insight Deck
+# 📊 Smart Reporter
 ### _AI-powered automated reporting & slide generation_
 
 Insight Deck is an intelligent automation tool that reads data, analyzes it, and automatically generates **executive-ready reports** and **PowerPoint slides**.
