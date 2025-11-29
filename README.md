@@ -1,7 +1,7 @@
-# 📊 Jira Insight Deck
-### _AI-powered automated reporting & slide generation for Jira_
+# 📊 Insight Deck
+### _AI-powered automated reporting & slide generation_
 
-Jira Insight Deck is an intelligent automation tool that reads data from Jira, analyzes it, and automatically generates **executive-ready reports** and **PowerPoint slides**.
+Insight Deck is an intelligent automation tool that reads data, analyzes it, and automatically generates **executive-ready reports** and **PowerPoint slides**.
 
 No more manual status reporting.  
 No more stitching issues into slides.  
@@ -63,8 +63,8 @@ Supports:
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-org/jira-insight-deck.git
-cd jira-insight-deck
+git clone https://github.com/arefbehboudi/smart-reporter.git
+cd smart-reporter
 pip install -r requirements.txt
 ````
 
@@ -75,9 +75,6 @@ pip install -r requirements.txt
 Create a `.env` file:
 
 ```
-JIRA_URL=https://your-domain.atlassian.net
-JIRA_EMAIL=your-email
-JIRA_API_TOKEN=your-api-token
 OPENAI_API_KEY=your-openai-key
 REPORT_OUTPUT_DIR=./reports
 MODEL_NAME=gpt-4o-mini
@@ -110,7 +107,7 @@ python generate_report.py --no-slides
 ## 📁 Project Structure
 
 ```
-jira-insight-deck/
+smart-reporter/
 │
 ├── src/
 │   ├── core/                          # Core logic of the reporting engine
