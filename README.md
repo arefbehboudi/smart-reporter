@@ -114,7 +114,7 @@ smart-reporter/
 │   │   ├── clients/                           # Data source clients (Jira, etc.)
 │   │   │   ├── __init__.py
 │   │   │   ├── base_client.py                 # Abstract interface for all clients
-│   │   │   └── jira_client.py                 # Jira implementation of BaseClient
+│   │   │   ├── jira_client.py                 # Jira implementation of BaseClient
 │   │   │   ├── github_client.py               # GitHub Issues client
 │   │   │   └── linear_client.py               # Linear client
 │   │   │
@@ -223,7 +223,6 @@ smart-reporter/
 ├── .env.example                               # Example environment variables
 ├── .gitignore
 ├── README.md
-├── ARCHITECTURE.md                            # Architecture and diagrams (Mermaid, etc.)
 └── LICENSE
 
 ```
