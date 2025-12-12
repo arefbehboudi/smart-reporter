@@ -66,6 +66,7 @@ Supports:
 git clone https://github.com/arefbehboudi/smart-reporter.git
 cd smart-reporter
 pip install -r requirements.txt
+python -m streamlit run src/dashboard/app.py
 ````
 
 ---
@@ -139,8 +140,8 @@ smart-reporter/
 │   │   ├── issue.py                           # Issue model
 │   │   ├── epic.py                            # Epic/feature model
 │   │   ├── sprint.py                          # Sprint & sprint metrics model
-│   │   ├── summary.py                         # Summary/insight output model
-│   │   └── config_model.py                    # Environment & config schema
+│   │   └── summary.py                         # Summary/insight output model
+│   │
 │   │
 │   ├── utils/                                 # Utility helpers
 │   │   ├── __init__.py
