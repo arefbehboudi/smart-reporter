@@ -87,6 +87,95 @@ class JiraClient(BaseClient):
         for item in data.get("issues", []):
             yield self._to_issue(item)
 
+    def fetch_projects(self) -> List[str]:
+        url = f"{self.base_url}/rest/api/3/project/search"
+        response = requests.get(
+            url,
+            auth=self.auth,
+            verify=self.verify_ssl,
+            timeout=self.timeout,
+            headers={"Accept": "application/json"},
+        )
+        response.raise_for_status()
+        data = response.json() or {}
+        return [proj.get("key") for proj in data.get("values", []) if proj.get("key")]
+
+    def fetch_statuses(self, project_key: Optional[str] = None) -> List[str]:
+        if project_key:
+            url = f"{self.base_url}/rest/api/3/project/{project_key}/statuses"
+            response = requests.get(
+                url,
+                auth=self.auth,
+                verify=self.verify_ssl,
+                timeout=self.timeout,
+                headers={"Accept": "application/json"},
+            )
+            response.raise_for_status()
+            data = response.json() or []
+            names: List[str] = []
+            for wf in data:
+                for status in wf.get("statuses", []):
+                    name = status.get("name")
+                    if name:
+                        names.append(name)
+            return sorted(set(names))
+
+        url = f"{self.base_url}/rest/api/3/status"
+        response = requests.get(
+            url,
+            auth=self.auth,
+            verify=self.verify_ssl,
+            timeout=self.timeout,
+            headers={"Accept": "application/json"},
+        )
+        response.raise_for_status()
+        data = response.json() or []
+        return [s.get("name") for s in data if s.get("name")]
+
+    def fetch_priorities(self) -> List[str]:
+        url = f"{self.base_url}/rest/api/3/priority"
+        response = requests.get(
+            url,
+            auth=self.auth,
+            verify=self.verify_ssl,
+            timeout=self.timeout,
+            headers={"Accept": "application/json"},
+        )
+        response.raise_for_status()
+        data = response.json() or []
+        return [p.get("name") for p in data if p.get("name")]
+
+    def fetch_assignees(self, query: str = "") -> List[str]:
+        url = f"{self.base_url}/rest/api/3/user/search"
+        params = {"query": query or ""}
+        response = requests.get(
+            url,
+            params=params,
+            auth=self.auth,
+            verify=self.verify_ssl,
+            timeout=self.timeout,
+            headers={"Accept": "application/json"},
+        )
+        response.raise_for_status()
+        data = response.json() or []
+        return [u.get("displayName") for u in data if u.get("displayName")]
+
+    def fetch_labels(self, query: str = "") -> List[str]:
+        # Jira Cloud supports label search endpoint with optional prefix query
+        url = f"{self.base_url}/rest/api/3/label"
+        params = {"query": query or ""}
+        response = requests.get(
+            url,
+            params=params,
+            auth=self.auth,
+            verify=self.verify_ssl,
+            timeout=self.timeout,
+            headers={"Accept": "application/json"},
+        )
+        response.raise_for_status()
+        data = response.json() or {}
+        return [label for label in data.get("values", []) if label]
+
     def _build_jql(
             self,
             project_keys: Optional[List[str]] = None,
